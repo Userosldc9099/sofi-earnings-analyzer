@@ -1,0 +1,8 @@
+services:
+  - type: cron
+    name: sofi-earnings-analyzer
+    env: python
+    schedule: "30 8 29 7 *"
+    plan: starter
+    buildCommand: "pip install -r requirements.txt"
+    startCommand: "python main.py"
