@@ -10,7 +10,8 @@ def send_telegram(message: str):
     url = f"https://api.telegram.org/bot{token}/sendMessage"
     payload = {
         "chat_id": chat_id,
-        "text": message
+        "text": message[:3900],  # урежем сообщение до лимита
+        "parse_mode": "MarkdownV2"  # ИЛИ убери это поле, если глючит
     }
 
     try:
