@@ -42,8 +42,12 @@ def analyze_report():
             temperature=0.3
         )
         result = response.choices[0].message.content
-        print("✅ Ответ GPT получен:", result[:200])
-        send_telegram(f"📊 SoFi Earnings ({datetime.today().date()}):\n{result}")
+        print("✅ Ответ GPT получен:", result[:300])
+
+        # Удаляем потенциально опасные символы Markdown
+        clean = result.replace("*", "").replace("_", "").replace("`", "").replace("~", "").replace(">", "")
+        
+        send_telegram(f"📊 SoFi Earnings ({datetime.today().date()}):\n{clean[:3900]}")
 
     except Exception as e:
         print("🔥 Ошибка при обращении к OpenAI:", str(e))
